@@ -1,0 +1,286 @@
+.merkle-dag-container {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: #f9fafb;
+  padding: 3rem 2rem 2rem 2rem;
+  box-sizing: border-box;
+}
+
+.merkle-dag-heading {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.dag-visualization-area {
+  width: 100%;
+  max-width: 900px;
+  height: 600px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  box-sizing: border-box;
+  border-top: 3px solid #e67e22;
+}
+
+.dag-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Control Buttons */
+.dag-control-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.dag-control-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dag-control-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dag-control-btn:active {
+  transform: translateY(0);
+}
+
+.dag-start-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.85rem 2rem;
+  font-size: 1.1rem;
+}
+
+.dag-start-btn:hover {
+  background: linear-gradient(135deg, #5568d3 0%, #65408b 100%);
+}
+
+.dag-pause-btn {
+  background: #f39c12;
+  color: white;
+}
+
+.dag-pause-btn:hover {
+  background: #e67e22;
+}
+
+.dag-skip-btn {
+  background: #3498db;
+  color: white;
+}
+
+.dag-skip-btn:hover {
+  background: #2980b9;
+}
+
+.dag-stop-btn {
+  background: #e74c3c;
+  color: white;
+}
+
+.dag-stop-btn:hover {
+  background: #c0392b;
+}
+
+/* DAG Elements */
+.dag-connection {
+  stroke: #95a5a6;
+  stroke-width: 0.5;
+  opacity: 0.4;
+  transition: all 0.5s ease;
+}
+
+.dag-connection.affected {
+  stroke: #e67e22;
+  stroke-width: 0.7;
+  opacity: 0.8;
+  animation: pulseConnection 1s ease-in-out infinite;
+}
+
+.dag-data-block {
+  fill: #3498db;
+  transition: all 0.5s ease;
+  filter: drop-shadow(0 0 2px rgba(52, 152, 219, 0.4));
+}
+
+.dag-data-block.changed {
+  fill: #e67e22;
+  filter: drop-shadow(0 0 4px rgba(230, 126, 34, 0.8));
+  animation: blockChange 0.6s ease-in-out;
+}
+
+.dag-node {
+  fill: #9b59b6;
+  transition: all 0.5s ease;
+  filter: drop-shadow(0 0 2px rgba(155, 89, 182, 0.5));
+}
+
+.dag-node.updated {
+  fill: #e67e22;
+  filter: drop-shadow(0 0 4px rgba(230, 126, 34, 0.8));
+  animation: nodeUpdate 0.8s ease-in-out;
+}
+
+.dag-root-node {
+  fill: #8e44ad;
+  transition: all 0.5s ease;
+  filter: drop-shadow(0 0 3px rgba(142, 68, 173, 0.6));
+}
+
+.dag-root-node.highlighted {
+  animation: rootHighlight 1.5s ease-in-out infinite;
+}
+
+.dag-root-node.updated {
+  fill: #e67e22;
+  filter: drop-shadow(0 0 5px rgba(230, 126, 34, 0.9));
+  animation: rootUpdate 1s ease-in-out;
+}
+
+.dag-root-node.old-root {
+  fill: #95a5a6;
+  opacity: 0;
+  animation: fadeOut 0.8s ease-out forwards;
+}
+
+/* Labels */
+.dag-hash-label {
+  font-size: 2.5px;
+  fill: #7f8c8d;
+  text-anchor: middle;
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  transition: fill 0.5s ease;
+}
+
+.old-root-text {
+  opacity: 0;
+  animation: fadeOut 0.8s ease-out forwards;
+}
+
+.dag-step-label {
+  font-size: 3.5px;
+  fill: #2c3e50;
+  text-anchor: middle;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+}
+
+/* Animations */
+@keyframes blockChange {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes nodeUpdate {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rootHighlight {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 3px rgba(142, 68, 173, 0.6));
+  }
+  50% {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 6px rgba(142, 68, 173, 0.9));
+  }
+}
+
+@keyframes rootUpdate {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes pulseConnection {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dag-visualization-area {
+    height: 500px;
+  }
+
+  .merkle-dag-heading {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .merkle-dag-container {
+    padding: 1rem;
+  }
+
+  .dag-control-buttons {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .dag-control-btn {
+    padding: 0.65rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .dag-start-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+}

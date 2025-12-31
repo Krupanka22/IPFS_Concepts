@@ -1,0 +1,68 @@
+.ipfs-architecture {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.ipfs-architecture h2 {
+  margin: 0 0 20px 0;
+  font-size: 34px;
+  color: #555;
+  font-weight: 600;
+  text-align: center;
+}
+
+.ipfs-architecture .architecture-diagram {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  border: 2px solid #ecf0f1;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 10px;
+}
+
+.layer {
+  transition: all 0.3s ease;
+}
+
+.layer:hover {
+  opacity: 0.95;
+}
+
+.layer rect:first-child {
+  transition: all 0.3s ease;
+}
+
+.layer:hover rect:first-child {
+  filter: brightness(0.98);
+  stroke-width: 0.5;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .ipfs-architecture h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .ipfs-architecture .architecture-diagram {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .ipfs-architecture {
+    padding: 15px;
+  }
+
+  .ipfs-architecture h2 {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,271 @@
+.ipfs-gateway-access {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.ipfs-gateway-access h2 {
+  margin: 0 0 20px 0;
+  font-size: 28px;
+  color: #2c3e50;
+  font-weight: 600;
+  text-align: center;
+}
+
+.ipfs-gateway-access .controls {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.ipfs-gateway-access .controls button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(155, 89, 182, 0.3);
+}
+
+.ipfs-gateway-access .controls button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(155, 89, 182, 0.4);
+}
+
+.ipfs-gateway-access .controls button:disabled {
+  background: linear-gradient(135deg, #bdc3c7 0%, #95a5a6 100%);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.ipfs-gateway-access .visualization {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  border: 2px solid #e8e4f3;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Animations */
+@keyframes browserAppear {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gatewayAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes nodeAppear {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes arrowAnimate {
+  from {
+    stroke-dashoffset: 30;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes networkRequest {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.6;
+  }
+}
+
+@keyframes blockRetrieve {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes flowLine {
+  from {
+    stroke-dashoffset: 50;
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 0.4;
+  }
+}
+
+@keyframes checkmarkAppear {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes deliveryAnimate {
+  from {
+    stroke-dashoffset: 30;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes contentAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes labelFade {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Apply animations */
+.browser-appear {
+  animation: browserAppear 0.6s ease-out;
+}
+
+.gateway-appear {
+  animation: gatewayAppear 0.5s ease-out;
+}
+
+.node-appear {
+  animation: nodeAppear 0.5s ease-out;
+}
+
+.arrow-animate {
+  animation: arrowAnimate 0.8s ease-out;
+}
+
+.arrow-animate line {
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: arrowAnimate 0.8s ease-out forwards;
+}
+
+.network-request {
+  animation: networkRequest 0.6s ease-out;
+}
+
+.block-retrieve {
+  animation: blockRetrieve 0.5s ease-out;
+}
+
+.flow-line {
+  stroke-dasharray: 50;
+  animation: flowLine 0.8s ease-out;
+}
+
+.checkmark-appear {
+  animation: checkmarkAppear 0.3s ease-out;
+}
+
+.delivery-animate {
+  animation: deliveryAnimate 0.8s ease-out;
+}
+
+.delivery-animate line {
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: deliveryAnimate 0.8s ease-out forwards;
+}
+
+.content-appear {
+  animation: contentAppear 0.8s ease-out;
+}
+
+.label-fade {
+  animation: labelFade 0.5s ease-in;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .ipfs-gateway-access h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .ipfs-gateway-access .controls {
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .ipfs-gateway-access .controls button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .ipfs-gateway-access .visualization {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .ipfs-gateway-access {
+    padding: 15px;
+  }
+
+  .ipfs-gateway-access h2 {
+    font-size: 18px;
+  }
+
+  .ipfs-gateway-access .controls button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}

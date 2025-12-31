@@ -1,0 +1,247 @@
+.ipfs-file-reconstruction {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.ipfs-file-reconstruction h2 {
+  margin: 0 0 20px 0;
+  font-size: 28px;
+  color: #2c3e50;
+  font-weight: 600;
+  text-align: center;
+}
+
+.ipfs-file-reconstruction .controls {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.ipfs-file-reconstruction .controls button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+}
+
+.ipfs-file-reconstruction .controls button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+}
+
+.ipfs-file-reconstruction .controls button:disabled {
+  background: linear-gradient(135deg, #bdc3c7 0%, #95a5a6 100%);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.ipfs-file-reconstruction .visualization {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  border: 2px solid #e8f4f8;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Animations */
+@keyframes nodeAppear {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes blockAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes blockMove {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes verifyGlow {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes checkmarkAppear {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fileMerge {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fileAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cidAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes connectionAppear {
+  from {
+    stroke-dashoffset: 50;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes labelFade {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Apply animations */
+.node-appear {
+  animation: nodeAppear 0.5s ease-out;
+}
+
+.block-appear {
+  animation: blockAppear 0.4s ease-out;
+}
+
+.block-move {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.verify-glow {
+  animation: verifyGlow 0.8s ease-in-out;
+}
+
+.checkmark-appear {
+  animation: checkmarkAppear 0.3s ease-out;
+}
+
+.file-appear {
+  animation: fileAppear 0.5s ease-out;
+}
+
+.file-merge {
+  animation: fileMerge 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cid-appear {
+  animation: cidAppear 0.6s ease-out;
+}
+
+.connection-appear {
+  animation: connectionAppear 0.8s ease-out;
+}
+
+.label-fade {
+  animation: labelFade 0.5s ease-in;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .ipfs-file-reconstruction h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .ipfs-file-reconstruction .controls {
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .ipfs-file-reconstruction .controls button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .ipfs-file-reconstruction .visualization {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .ipfs-file-reconstruction {
+    padding: 15px;
+  }
+
+  .ipfs-file-reconstruction h2 {
+    font-size: 18px;
+  }
+
+  .ipfs-file-reconstruction .controls button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
